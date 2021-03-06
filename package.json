@@ -1,7 +1,7 @@
 {
   "name": "vivliostyle-theme-thesis",
   "description": "Academic theme (thesis)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "yamasy1549 <sanae@yamasy.info>",
   "scripts": {
     "dev": "vivliostyle-theme-scripts preview theme.css",
