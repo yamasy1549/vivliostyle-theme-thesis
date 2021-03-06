@@ -1,0 +1,24 @@
+/* ----------
+ * Math
+ * ----------
+*/
+
+/* use katex */
+@import "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css";
+
+.katex-display
+  position: relative
+
+.katex-display::after
+  position: absolute
+  display: block
+  top: 50%
+  transform: translateY(-50%)
+  right: 0
+
+// フォントサイズ
+.math-inline > .katex
+  font-size: $body-font-size * 0.99
+
+.katex .cjk_fallback
+  font-size: $body-font-size

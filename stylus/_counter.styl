@@ -1,0 +1,142 @@
+body
+  counter-reset: chapter table figure footnote list ref math
+
+@page
+  counter-increment: toc p
+
+  &:first
+    counter-reset: toc -1 p -2
+
+//
+// chapter, section, subsection
+//
+h1
+  counter-reset: section table figure math
+  counter-increment: chapter
+
+  &::before
+    content: "第 " counter(chapter) " 章"
+
+a.h1::after
+  content: target-counter(attr(href), chapter) " 章"
+
+h2
+  counter-reset: subsection
+  counter-increment: section
+
+  &::before
+    content: counter(chapter) "." counter(section)
+
+a.h2::after
+  content: target-counter(attr(href), chapter) "." target-counter(attr(href), section) " 節"
+
+h3
+  counter-increment: subsection
+
+  &::before
+    content: counter(chapter) "." counter(section) "." counter(subsection)
+
+a.h3::after
+  content: target-counter(attr(href), chapter) "." target-counter(attr(href), section)  "." target-counter(attr(href), subsection) " 項"
+
+//
+// table
+//
+table caption, .caption
+  counter-increment: table
+
+  &::before
+    content: "表 " counter(chapter) "." counter(table)
+
+a.tab::after
+  content: "表 " target-counter(attr(href), chapter) "." target-counter(attr(href), table) " "
+
+//
+// figure
+//
+figure figcaption, .figcaption
+  counter-increment: figure
+
+  &::before
+    content: "図 " counter(chapter) "." counter(figure)
+
+a.fig::after
+  content: "図 " target-counter(attr(href), chapter) "." target-counter(attr(href), figure) " "
+
+//
+// footnote
+//
+span.footnote
+  counter-increment: footnote
+
+  &::footnote-call
+    content: "*" counter(footnote)
+
+  &::footnote-marker
+    content: "*" counter(footnote)
+
+//
+// ref
+//
+ol.reference
+  li
+    counter-increment: ref
+
+    &:before
+      content: "[" counter(ref) "] "
+
+a.ref::after
+  content: "[" target-counter(attr(href), ref) "]"
+
+//
+// list
+//
+ol.number
+  counter-reset: list
+
+  li
+    counter-increment: list
+
+    &:before
+      content: "(" counter(list) ")"
+
+//
+// math
+//
+.katex-display
+  counter-increment: math
+
+  &:after
+    content: "(" counter(chapter) "." counter(math) ")"
+
+a.math::after
+  content: "(" target-counter(attr(href), chapter) "." target-counter(attr(href), math) ")"
+
+//
+// 目次
+//
+nav[role="doc-toc"]
+  a
+    &:after
+      content: target-counter(attr(href), p)
+
+  > ol // chapterレベル
+    a::before
+      content: "第 " target-counter(attr(href), chapter) " 章"
+
+    a.nocounter ::before
+      content: ""
+
+    > li ol
+      a::before // sectionレベル
+        content: target-counter(attr(href), chapter) "." target-counter(attr(href), section)
+
+      > li ol
+        a::before // subsectionレベル
+          content: target-counter(attr(href), chapter) "." target-counter(attr(href), section) "." target-counter(attr(href), subsection)
+
+//
+// カウントキャンセル
+//
+.nocounter
+  counter-increment: none

@@ -1,0 +1,41 @@
+{
+  "name": "vivliostyle-theme-thesis",
+  "description": "Academic theme (thesis)",
+  "version": "0.1.0",
+  "author": "yamasy1549 <sanae@yamasy.info>",
+  "scripts": {
+    "dev": "vivliostyle-theme-scripts preview theme.css",
+    "validate": "vivliostyle-theme-scripts validate",
+    "watch:scss": "stylus stylus/main.styl --include-css -o theme.css"
+  },
+  "devDependencies": {
+    "stylus": "^0.54.8",
+    "vivliostyle-theme-scripts": "^0.2.0"
+  },
+  "files": [
+    "*.css",
+    "*.css.map",
+    "*.md",
+    "stylus"
+  ],
+  "keywords": [
+    "vivliostyle",
+    "vivliostyle-theme"
+  ],
+  "license": "CC0-1.0",
+  "vivliostyle": {
+    "theme": {
+      "name": "Vivliostyle Theme Vivliostyle Thesis",
+      "author": "yamasy1549 <sanae@yamasy.info>",
+      "style": "./theme.css",
+      "category": "misc",
+      "topics": [
+        "Academic",
+        "Report"
+      ]
+    }
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
